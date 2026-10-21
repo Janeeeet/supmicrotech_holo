@@ -1,0 +1,63 @@
+/* clamp(min, valeur fluide, max) : la taille suit la largeur d'écran
+   mais reste bornée sur petits et grands écrans. */
+   
+:root {
+  --bg: rgba(66, 186, 230, 0.186);
+  --loader-font: clamp(1rem, 0.8rem + 1.5vw, 1.75rem);
+  --loader-padding: clamp(0.75rem, 3vw, 2rem);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  height: 100dvh;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+img {
+  max-width: 100%;
+}
+
+a-scene {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.arjs-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--loader-padding);
+  background-color: rgba(44, 41, 41, 0);
+}
+
+.arjs-loader div {
+  text-align: center;
+  font-size: var(--loader-font);
+  color: white;
+}
+
+/* Ajustements ponctuels selon le format d'écran */
+@media (orientation: landscape) and (max-height: 500px) {
+  :root {
+    --loader-font: 1rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --loader-font: 1.75rem;
+  }
+}
